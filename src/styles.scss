@@ -1,1 +1,9 @@
-/* You can add global styles to this file, and also import other style files */
+.custom-row {
+  display: flex;
+  flex-direction: row;
+
+  .third {
+    padding: 5px;
+    width: 33%;
+  }
+}

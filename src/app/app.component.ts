@@ -9,16 +9,71 @@ import { FormlyFieldConfig } from '@ngx-formly/core';
 })
 export class AppComponent {
   form1 = new FormGroup({});
-  model1 = {};
+  model1 = { currency: 'aed', amount: 101 };
   fields1: FormlyFieldConfig[] = [
     {
-      key: 'transferOfFunds',
-      type: 'input',
-      templateOptions: {
-        label: 'Request Subject',
-        placeholder: 'Transfer of funds',
-        required: true,
-      },
+      className: 'section-label',
+      template: '<hr /><div><strong>Estimated Cost Design</strong></div>',
+    },
+    {
+      fieldGroupClassName: 'row',
+      fieldGroup: [
+        {
+          className: 'col-3',
+          key: 'currency',
+          type: 'select',
+          templateOptions: {
+            label: 'Currency',
+            options: [
+              { label: 'AED', value: 'aed' },
+              { label: 'USD', value: 'usd' },
+            ],
+          },
+        },
+        {
+          className: 'col-3',
+          key: 'amount',
+          type: 'input',
+          hooks: {
+            onChanges: (data) => {
+              console.log({ data });
+            },
+          },
+          templateOptions: {
+            type: 'number',
+            label: 'Amount',
+            change: (field, $event) => {
+              const value = $event.srcElement.value;
+              const durationValue = value / 5;
+              const newModel = { ...this.model1, durationValue };
+              this.model1 = newModel;
+              console.log({ field, $event });
+            },
+          },
+        },
+        {
+          className: 'col-3',
+          key: 'duration',
+          type: 'select',
+          templateOptions: {
+            type: 'number',
+            label: 'Duration',
+            options: [
+              { label: 'Months', value: 'months' },
+              { label: 'Years', value: 'years' },
+            ],
+          },
+        },
+        {
+          className: 'col-3',
+          key: 'durationValue',
+          type: 'input',
+          templateOptions: {
+            type: 'number',
+            label: 'Test',
+          },
+        },
+      ],
     },
   ];
 
@@ -26,10 +81,10 @@ export class AppComponent {
   model2 = {};
   fields2: FormlyFieldConfig[] = [
     {
-      fieldGroupClassName: 'row',
+      fieldGroupClassName: 'custom-row',
       fieldGroup: [
         {
-          className: 'col-4',
+          className: 'third',
           key: 'submissionType',
           type: 'input',
           templateOptions: {
@@ -38,7 +93,7 @@ export class AppComponent {
           },
         },
         {
-          className: 'col-4',
+          className: 'third',
           key: 'userDirectorate',
           type: 'input',
           templateOptions: {
@@ -47,7 +102,7 @@ export class AppComponent {
           },
         },
         {
-          className: 'col-4',
+          className: 'third',
           key: 'client',
           type: 'input',
           templateOptions: {
