@@ -1,0 +1,19 @@
+<p>form works!</p>
+<div *ngFor="let formItem of formModel; let indexOfelement=index;">
+  <hr>
+  {{formItem.formIdentificator}}
+  <hr>
+    <form [formGroup]="mapFormInstances.get(formItem.formIdentificator)" (ngSubmit)="onSubmit()">
+        <formly-form [form]="mapFormInstances.get(formItem.formIdentificator)" [model]="formItem.formValues" [fields]="formItem.formFillds">
+        </formly-form>
+      
+    </form>
+</div>
+
+    <button
+      type="submit"
+      color="primary"
+      mat-raised-button
+    >
+      Submit
+    </button>

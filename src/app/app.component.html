@@ -1,8 +1,9 @@
 <div class="header">
   <h4 class="mat-h2">Angular Formly Material</h4>
+  <app-form [formModel]="formModelArray" *ngIf="formModelArray"></app-form>
 </div>
 
-<form [formGroup]="form1" (ngSubmit)="onSubmit()">
+<!-- <form [formGroup]="form1" (ngSubmit)="onSubmit()">
   <formly-form [form]="form1" [model]="model1" [fields]="fields1">
   </formly-form>
 
@@ -34,5 +35,6 @@
   <span>
     {{ model1 | json }}
   </span>
-</div>
+</div> -->
+
 
